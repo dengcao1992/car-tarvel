@@ -10,7 +10,7 @@ package com.cartravel.common;
  * @since 2019/12/06 10:41
  */
 public class Constants {
-    public final static String KAFKA_BOOTSTRAP_SERVERS = "10.20.3.177:9092,10.20.3.178:9092,10.20.3.179:9092";
+    public final static String KAFKA_BOOTSTRAP_SERVERS = "117.51.136.252:9092,117.51.148.59:9092,117.51.142.225:9092";
     /**
      * 存储订单gps轨迹信息
      */
