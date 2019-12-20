@@ -119,6 +119,10 @@
         <hadoop-auth.version>2.6.5</hadoop-auth.version>
         <hbase.version>1.2.0-cdh5.14.0</hbase.version>
         <guava.version>16.0</guava.version>
+        <!--第三周内容-->
+        <mybatis-spring-boot.version>1.3.2</mybatis-spring-boot.version>
+        <druid.version>1.1.14</druid.version>
+        <tephra-core.version>0.14.0-incubating</tephra-core.version>
 
     </properties>
 
@@ -140,6 +144,25 @@
                 <artifactId>hbase-server</artifactId>
                 <!--版本号在子模块中可以本继承到-->
                 <version>${hbase.version}</version>
+            </dependency>
+            <!--第三周添加的内容-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+            <!--第三周添加的内容-->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis-spring-boot.version}</version>
+            </dependency>
+
+            <!--第三周内容-->
+            <dependency>
+                <groupId>org.apache.tephra</groupId>
+                <artifactId>tephra-core</artifactId>
+                <version>${tephra-core.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

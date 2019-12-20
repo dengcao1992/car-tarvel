@@ -52,17 +52,11 @@ public class HaiKouOrderInfoConsumer implements Runnable {
 
         Properties props = new Properties();
 
-        //dev-hdp
-//        props.put("bootstrap.servers", "192.168.21.173:6667,192.168.21.174:6667,192.168.21.175:6667");
-        //dev-cdh
-//        props.put("bootstrap.servers", "192.168.21.177:9092,192.168.21.178:9092,192.168.21.179:9092");
-        //pro-cdh
         props.put("bootstrap.servers", Constants.KAFKA_BOOTSTRAP_SERVERS);
 
         props.put("group.id", groupId);
         props.put("enable.auto.commit", "true");
         props.put("auto.offset.reset", "earliest");
-//        props.put("auto.offset.reset", "latest");
         props.put("session.timeout.ms", "30000");
         props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
