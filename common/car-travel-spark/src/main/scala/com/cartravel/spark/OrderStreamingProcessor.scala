@@ -108,11 +108,11 @@ object OrderStreamingProcessor {
             if (null == order) {
                 ("", 0)
             } else if (order.getClass == classOf[ChengDuTravelOrder]) {
-                (Constants.CITY_CODE_CHENG_DU + "_" + order.createDay, 1)
+                (Constants.CITY_CODE_CHENG_DU + "_" + order.get.createDay, 1)
             } else if (order.getClass == classOf[XiAnTravelOrder]) {
-                (Constants.CITY_CODE_XI_AN + "_" + order.createDay, 1)
+                (Constants.CITY_CODE_XI_AN + "_" + order.get.createDay, 1)
             } else if (order.getClass == classOf[HaiKouTravelOrder]) {
-                (Constants.CITY_CODE_HAI_KOU + "_" + order.createDay, 1)
+                (Constants.CITY_CODE_HAI_KOU + "_" + order.get.createDay, 1)
             } else {
                 ("", 0)
             }
@@ -130,14 +130,14 @@ object OrderStreamingProcessor {
             if (null == order) {
                 ("", 0)
             } else if (order.getClass == classOf[ChengDuTravelOrder]) {
-                (Constants.CITY_CODE_CHENG_DU + "_" + order.createDay, 1)
+                (Constants.CITY_CODE_CHENG_DU + "_" + order.get.createDay, 1)
             } else if (order.getClass == classOf[XiAnTravelOrder]) {
-                (Constants.CITY_CODE_XI_AN + "_" + order.createDay, 1)
+                (Constants.CITY_CODE_XI_AN + "_" + order.get.createDay, 1)
             } else if (order.getClass == classOf[HaiKouTravelOrder]) {
                 var passengerCount = order.asInstanceOf[HaiKouTravelOrder].passengerCount.toInt
                 //scala不支持类似java中的三目运算符，可以使用下面的操作方式
                 passengerCount = if(passengerCount>0) passengerCount else 1
-                (Constants.CITY_CODE_HAI_KOU + "_" + order.createDay,passengerCount)
+                (Constants.CITY_CODE_HAI_KOU + "_" + order.get.createDay,passengerCount)
             } else {
                 ("", 0)
             }
@@ -162,7 +162,6 @@ object OrderStreamingProcessor {
             })
             jedisUtil.returnJedis(jedis)
         })
-
         passengerCountRest.foreachRDD(passengerCountRdd=>{
             import com.cartravel.util.JedisUtil
             val jedisUtil = JedisUtil.getInstance()

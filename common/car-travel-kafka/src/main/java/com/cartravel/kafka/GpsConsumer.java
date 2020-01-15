@@ -232,7 +232,7 @@ public class GpsConsumer implements Runnable {
         //kafka主题
         String topic = "cheng_du_gps_topic";
         //消费组id
-        String groupId = "cheng_du_gps_consumer_01";
+        String groupId = "dcs_cheng_du_gps_consumer_01";
 
         GpsConsumer gpsConsumer = new GpsConsumer(topic, groupId);
         Thread start = new Thread(gpsConsumer);
