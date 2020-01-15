@@ -41,11 +41,10 @@ object OrderStreamingProcessor {
         //"auto.offset.reset" -> "earliest"
         //
         val kafkaParams = Map[String, Object](
-            //      "bootstrap.servers" -> "192.168.21.173:6667,192.168.21.174:6667,192.168.21.175:6667",
             "bootstrap.servers" -> Constants.KAFKA_BOOTSTRAP_SERVERS,
             "key.deserializer" -> classOf[StringDeserializer],//(k,v)
             "value.deserializer" -> classOf[StringDeserializer],
-            "group.id" -> "test0002",
+            "group.id" -> "test0000",
             "auto.offset.reset" -> "latest",
             "enable.auto.commit" -> (false: java.lang.Boolean)
         )
@@ -117,7 +116,7 @@ object OrderStreamingProcessor {
                 ("", 0)
             }
         }).updateStateByKey((currValues: Seq[Int], state: Option[Int]) => {
-            var count = currValues.sum + state.getOrElse(0);
+            val count = currValues.sum + state.getOrElse(0)
             Some(count)
         })
 
@@ -142,7 +141,7 @@ object OrderStreamingProcessor {
                 ("", 0)
             }
         }).updateStateByKey((currValues: Seq[Int], state: Option[Int]) => {
-            var count = currValues.sum + state.getOrElse(0);
+            val count = currValues.sum + state.getOrElse(0)
             Some(count)
         })
 
@@ -153,7 +152,7 @@ object OrderStreamingProcessor {
             val jedis = jedisUtil.getJedis
             //从集群中收集统计结果，然后在driver
             val orderCountRest = orderCountRDD.collect()
-            println("orderCountRest:"+orderCountRest)
+            println("orderCountRest:"+orderCountRest.mkString(","))
             orderCountRest.foreach(countrest=>{
                 println("countrest:"+countrest._1+","+countrest._2)
                 if(null!=countrest){

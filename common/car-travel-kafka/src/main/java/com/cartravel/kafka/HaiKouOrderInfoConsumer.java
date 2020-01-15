@@ -183,7 +183,7 @@ public class HaiKouOrderInfoConsumer implements Runnable {
         //kafka主题
         String topic = "hai_kou_order_topic";
         //消费组id
-        String groupId = "haikou_order_g_004";
+        String groupId = "dcs_haikou_order_g_004";
 
         HaiKouOrderInfoConsumer gpsConsumer = new HaiKouOrderInfoConsumer(topic, groupId);
         Thread start = new Thread(gpsConsumer);

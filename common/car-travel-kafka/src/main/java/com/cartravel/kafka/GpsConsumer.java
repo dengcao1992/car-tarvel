@@ -12,6 +12,7 @@ import org.apache.hadoop.hbase.client.Table;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.common.TopicPartition;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import redis.clients.jedis.Jedis;
