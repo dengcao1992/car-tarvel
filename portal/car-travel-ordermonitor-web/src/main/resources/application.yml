@@ -69,3 +69,6 @@ logging:
 #      maxWaitMillis: 10000
 #      password: @jedis.pool.config.password@
 #
+
+server:
+          port: 8086

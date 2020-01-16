@@ -104,13 +104,13 @@ object OrderStreamingProcessor {
 
         //订单计数,对于每个订单出现一次计数1
         val orderCountRest = ordersDs.map(order => {
-            if (null == order) {
+            if (order.isEmpty || order.get == null) {
                 ("", 0)
-            } else if (order.getClass == classOf[ChengDuTravelOrder]) {
+            } else if (order.get.getClass == classOf[ChengDuTravelOrder]) {
                 (Constants.CITY_CODE_CHENG_DU + "_" + order.get.createDay, 1)
-            } else if (order.getClass == classOf[XiAnTravelOrder]) {
+            } else if (order.get.getClass == classOf[XiAnTravelOrder]) {
                 (Constants.CITY_CODE_XI_AN + "_" + order.get.createDay, 1)
-            } else if (order.getClass == classOf[HaiKouTravelOrder]) {
+            } else if (order.get.getClass == classOf[HaiKouTravelOrder]) {
                 (Constants.CITY_CODE_HAI_KOU + "_" + order.get.createDay, 1)
             } else {
                 ("", 0)
@@ -126,14 +126,14 @@ object OrderStreamingProcessor {
           * 海口的订单数据中有乘车人数字段，就按照具体数进行统计
           */
         val passengerCountRest = ordersDs.map(order => {
-            if (null == order) {
+            if (order.isEmpty || null == order) {
                 ("", 0)
-            } else if (order.getClass == classOf[ChengDuTravelOrder]) {
+            } else if (order.get.getClass == classOf[ChengDuTravelOrder]) {
                 (Constants.CITY_CODE_CHENG_DU + "_" + order.get.createDay, 1)
-            } else if (order.getClass == classOf[XiAnTravelOrder]) {
+            } else if (order.get.getClass == classOf[XiAnTravelOrder]) {
                 (Constants.CITY_CODE_XI_AN + "_" + order.get.createDay, 1)
-            } else if (order.getClass == classOf[HaiKouTravelOrder]) {
-                var passengerCount = order.asInstanceOf[HaiKouTravelOrder].passengerCount.toInt
+            } else if (order.get.getClass == classOf[HaiKouTravelOrder]) {
+                var passengerCount = order.get.asInstanceOf[HaiKouTravelOrder].passengerCount.toInt
                 //scala不支持类似java中的三目运算符，可以使用下面的操作方式
                 passengerCount = if(passengerCount>0) passengerCount else 1
                 (Constants.CITY_CODE_HAI_KOU + "_" + order.get.createDay,passengerCount)
