@@ -54,14 +54,14 @@ object VirtualStationsProcessor {
 
     val hbConf = HBaseConfiguration.create(sparkSession.sparkContext.hadoopConfiguration)
 //    hbConf.set("hbase.zookeeper.quorum", "10.20.3.177,10.20.3.178,10.20.3.179")
-    hbConf.set("hbase.zookeeper.quorum", "192.168.52.100,192.168.52.110,192.168.52.120")
+    hbConf.set("hbase.zookeeper.quorum", "node02.kaikeba.com")
     hbConf.set("hbase.zookeeper.property.clientPort", "2181")
 
     val sqlContext = sparkSession.sqlContext
 
-    val districtList = new java.util.ArrayList[com.cartravel.util.District]();
-    val districts: JSONArray = MapUtil.getDistricts("海口市", null);
-    MapUtil.parseDistrictInfo(districts, null, districtList);
+    val districtList = new java.util.ArrayList[com.cartravel.util.District]()
+    val districts: JSONArray = MapUtil.getDistricts("海口市", null)
+    MapUtil.parseDistrictInfo(districts, null, districtList)
 
     //行政区域广播变量（spark开发优化的一个点）
     val districtsBroadcastVar = sparkSession.sparkContext.broadcast(districtList)
@@ -73,7 +73,7 @@ object VirtualStationsProcessor {
     order.show()
 
     //注册临时视图
-    order.createOrReplaceTempView("order");
+    order.createOrReplaceTempView("order")
 
     //没什么业务功能
     val groupRdd = order.rdd.groupBy(row => {

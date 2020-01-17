@@ -45,7 +45,7 @@ public class TrackMonitorController {
     @PostMapping("/realtimeOrder")
     public ResultModel<List<String>> realtimeOrder(@RequestBody QueryWrapper wrapper, HttpServletRequest request) {
         long startTime = System.currentTimeMillis();
-        logger.info("【查询实时轨迹...】");
+        logger.info("【查询实时订单...】");
         ResultModel<List<String>> result = new ResultModel<List<String>>();
         try {
             JedisUtil jedisUtil = JedisUtil.getInstance();
@@ -62,7 +62,7 @@ public class TrackMonitorController {
         } catch (Exception e) {
             result.setMsg(e.getMessage());
         }
-        logger.info("【查询实时轨迹】msg:{},time:{}", result.getMsg(),
+        logger.info("【查询实时订单】msg:{},time:{}", result.getMsg(),
                 System.currentTimeMillis() - startTime);
         return result;
     }
