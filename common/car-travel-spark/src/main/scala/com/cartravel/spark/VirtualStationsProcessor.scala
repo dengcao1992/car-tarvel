@@ -43,7 +43,7 @@ object VirtualStationsProcessor {
     //local[*]使用本地模式运行，*表示内部会自动计算CPU核数，也可以直接指定运行线程数比如2，就是local[2]
     //表示使用两个线程来模拟spark集群
     val conf = new SparkConf().setAppName("Virtual-stations")
-            .setMaster("yarn")
+            .setMaster("local[1]")
             .set("spark.yarn.jars", "*.jar")
 
     val sparkSession = SparkSession
